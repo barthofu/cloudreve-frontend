@@ -407,6 +407,8 @@
     "captchaForAbuseReportDes": "Se abilitare il captcha per la segnalazione abusi.",
     "webauthnDes": "Se permettere agli utenti di accedere con dispositivi di autenticazione hardware, come: volto, impronta digitale o chiave USB; il sito deve abilitare HTTPS.",
     "webauthn": "Accesso con Passkey",
+    "exposeUserEmail": "Mostra le email degli utenti agli utenti registrati",
+    "exposeUserEmailDes": "Se abilitato, gli utenti registrati possono vedere gli indirizzi email degli altri utenti nei file condivisi. Se disabilitato, verrà mostrato solo l'ID utente.",
     "defaultSymbolics": "Scorciatoie condivisione predefinite",
     "defaultSymbolicsDes": "Scorciatoie link condivisione predefinite nella directory root di nuovi utenti. Cerca link condivisioni per ID, puoi vedere l'ID sul lato sinistro della <0>lista condivisioni</0>.",
     "searchShare": "Cerca ID condivisione...",

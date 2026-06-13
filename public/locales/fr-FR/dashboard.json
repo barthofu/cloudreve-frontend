@@ -407,6 +407,8 @@
     "captchaForAbuseReportDes": "S'il faut activer le captcha pour le rapport d'abus.",
     "webauthnDes": "S'il faut permettre aux utilisateurs de se connecter avec des dispositifs d'authentification matérielle, tels que : visage, empreinte digitale ou clé USB ; le site doit activer HTTPS.",
     "webauthn": "Connexion avec les clés d'accès",
+    "exposeUserEmail": "Exposer les e-mails des utilisateurs aux utilisateurs connectés",
+    "exposeUserEmailDes": "Lorsqu'elle est activée, les utilisateurs connectés peuvent voir les adresses e-mail des autres utilisateurs dans les fichiers partagés. Lorsqu'elle est désactivée, seul l'ID de l'utilisateur est affiché.",
     "defaultSymbolics": "Raccourcis de partage par défaut",
     "defaultSymbolicsDes": "Raccourcis de partage par défaut dans le répertoire racine des nouveaux utilisateurs. Veuillez rechercher les liens de partage par ID, vous pouvez voir l'ID sur le côté gauche de la <0>liste de partage</0>.",
     "searchShare": "Rechercher l'ID de partage...",

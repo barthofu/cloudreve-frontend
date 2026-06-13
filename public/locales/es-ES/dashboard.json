@@ -407,6 +407,8 @@
     "captchaForAbuseReportDes": "Si habilitar el captcha para reporte de abuso.",
     "webauthnDes": "Si permitir a los usuarios iniciar sesión con dispositivos de autenticación de hardware, como: cara, huella dactilar o llave USB; el sitio debe habilitar HTTPS.",
     "webauthn": "Iniciar sesión con Llaves de Paso",
+    "exposeUserEmail": "Mostrar correos electrónicos a usuarios con sesión iniciada",
+    "exposeUserEmailDes": "Cuando está habilitado, los usuarios con sesión iniciada pueden ver las direcciones de correo electrónico de otros usuarios en archivos compartidos. Cuando está deshabilitado, solo se mostrará el ID del usuario.",
     "defaultSymbolics": "Accesos directos de compartir predeterminados",
     "defaultSymbolicsDes": "Accesos directos de enlaces de compartir predeterminados en el directorio raíz de nuevos usuarios. Por favor busca enlaces de compartir por ID, puedes ver el ID en el lado izquierdo de la <0>lista de compartir</0>.",
     "searchShare": "Buscar ID de compartir...",

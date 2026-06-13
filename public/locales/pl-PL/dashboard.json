@@ -406,6 +406,8 @@
     "captchaForAbuseReportDes": "Czy włączyć captcha przy zgłaszaniu nadużyć.",
     "webauthnDes": "Czy zezwolić użytkownikom na logowanie się za pomocą sprzętowych urządzeń uwierzytelniających, takich jak: twarz, odcisk palca lub klucz USB; witryna musi mieć włączony HTTPS.",
     "webauthn": "Logowanie kluczami dostępu (Passkeys)",
+    "exposeUserEmail": "Pokazuj adresy e-mail użytkowników zalogowanym użytkownikom",
+    "exposeUserEmailDes": "Po włączeniu zalogowani użytkownicy mogą widzieć adresy e-mail innych użytkowników w udostępnieniach. Po wyłączeniu wyświetlany będzie tylko identyfikator użytkownika.",
     "defaultSymbolics": "Domyślne skróty udostępniania",
     "defaultSymbolicsDes": "Domyślne skróty udostępniania w katalogu głównym nowych użytkowników. Wyszukaj linki udostępniania po ID, ID możesz zobaczyć po lewej stronie <0>listy udostępnień</0>.",
     "searchShare": "Szukaj ID udostępnienia...",

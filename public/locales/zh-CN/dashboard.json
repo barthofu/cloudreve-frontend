@@ -406,6 +406,8 @@
     "captchaForAbuseReportDes": "是否启用滥用举报表单验证码。",
     "webauthnDes": "是否允许用户使用绑定的硬件认证设备登录，比如：人脸、指纹或 USB 密钥；站点必须启用 HTTPS 才能使用。",
     "webauthn": "使用通行密钥登录",
+    "exposeUserEmail": "向已登录用户公开邮箱",
+    "exposeUserEmailDes": "启用后，已登录用户可在分享等界面看到其他用户的邮箱。禁用后将仅显示用户 ID。",
     "defaultSymbolics": "初始分享快捷方式",
     "defaultSymbolicsDes": "新用户根目录下默认存在的分享链接快捷方式。请通过数字 ID 搜索分享链接，你可在 <0>分享列表</0> 最左侧看到数字 ID。",
     "searchShare": "搜索分享 ID...",
