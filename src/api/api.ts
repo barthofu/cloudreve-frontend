@@ -352,6 +352,22 @@ export function sendDeleteFiles(req: DeleteFileService): ThunkResponse {
   };
 }
 
+export function sendEmptyTrash(): ThunkResponse {
+  return async (dispatch, _getState) => {
+    return await dispatch(
+      send(
+        "/file/trash",
+        {
+          method: "DELETE",
+        },
+        {
+          ...defaultOpts,
+        },
+      ),
+    );
+  };
+}
+
 export function sendUnlockFiles(req: UnlockFileService): ThunkResponse {
   return async (dispatch, _getState) => {
     return await dispatch(

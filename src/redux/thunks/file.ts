@@ -8,6 +8,7 @@ import {
   getFileThumb,
   sendCreateFile,
   sendDeleteFiles,
+  sendEmptyTrash,
   sendMetadataPatch,
   sendMoveFile,
   sendRenameFile,
@@ -715,6 +716,33 @@ export function restoreFile(index: number, src: FileResponse[]): AppThunk {
         message: i18next.t("application:modals.fileRestored", {
           num: src.length,
         }),
+        variant: "success",
+      });
+    }
+  };
+}
+
+export function emptyTrash(index: number): AppThunk {
+  return async (dispatch, _getState) => {
+    try {
+      await dispatch(confirmOperation(i18next.t("application:fileManager.emptyTrashConfirm")));
+    } catch (e) {
+      // user canceled
+      return;
+    }
+
+    let success = true;
+    try {
+      await longRunningTaskWithSnackbar(dispatch(sendEmptyTrash()), "application:modals.processingDeletion");
+    } catch (e) {
+      success = false;
+    }
+
+    if (success) {
+      await dispatch(refreshFileList(index));
+      dispatch(updateUserCapacity(index));
+      enqueueSnackbar({
+        message: i18next.t("application:fileManager.trashEmptied"),
         variant: "success",
       });
     }
