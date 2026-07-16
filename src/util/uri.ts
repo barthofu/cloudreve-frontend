@@ -11,6 +11,7 @@ export const Filesystem = {
   shared_by_me: "shared_by_me",
   shared_with_me: "shared_with_me",
   trash: "trash",
+  collab: "collab",
 };
 
 export const UriQuery = {

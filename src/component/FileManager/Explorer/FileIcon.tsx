@@ -3,7 +3,7 @@ import { forwardRef, memo, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { FileResponse, FileType, Metadata } from "../../../api/explorer.ts";
 import UserAvatar from "../../Common/User/UserAvatar.tsx";
-import ShareAndroid from "../../Icons/ShareAndroid.tsx";
+import PeopleFilled from "../../Icons/PeopleFilled.tsx";
 import EmojiIcon from "./EmojiIcon.tsx";
 import FileTypeIcon from "./FileTypeIcon.tsx";
 
@@ -93,7 +93,7 @@ const FileIcon = memo(
                 bgcolor: (theme) => theme.palette.background.default,
               }}
             >
-              <ShareAndroid sx={{ fontSize: `${avatarSize - 0}px!important` }} color={"action"} />
+              <PeopleFilled sx={{ fontSize: `${avatarSize - 0}px!important` }} color={"action"} />
             </Avatar>
           </Tooltip>
         );

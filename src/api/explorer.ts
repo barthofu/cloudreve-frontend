@@ -93,6 +93,24 @@ export interface Share {
   writable?: boolean;
 }
 
+/**
+ * Collaboration - a direct (non-link) share of a folder to a specific instance
+ * user.
+ */
+export interface Collaboration {
+  id: string;
+  writable: boolean;
+  created_at: string;
+  collaborator?: User;
+  owner?: User;
+  folder_name?: string;
+}
+
+export interface ListCollaborationResponse {
+  collaborations: Collaboration[];
+  pagination: PaginationResults;
+}
+
 export enum PolicyType {
   local = "local",
   remote = "remote",
@@ -310,6 +328,21 @@ export interface ShareCreateService {
   share_view?: boolean;
   show_readme?: boolean;
   writable?: boolean;
+}
+
+export interface CollaborationCreateService {
+  uri: string;
+  user_id: string;
+  writable: boolean;
+}
+
+export interface ListCollaboratorsService {
+  uri: string;
+}
+
+export interface ListSharedByMeService {
+  page: number;
+  page_size: number;
 }
 
 export interface CreateFileService {

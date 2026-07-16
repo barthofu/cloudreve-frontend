@@ -46,6 +46,8 @@ import {
 import {
   ArchiveListFilesResponse,
   ArchiveListFilesService,
+  Collaboration,
+  CollaborationCreateService,
   CreateFileService,
   CreateViewerSessionService,
   DeleteFileService,
@@ -57,8 +59,11 @@ import {
   FileURLResponse,
   FileURLService,
   GetFileInfoService,
+  ListCollaborationResponse,
+  ListCollaboratorsService,
   ListFileService,
   ListResponse,
+  ListSharedByMeService,
   MoveFileService,
   MultipleUriService,
   PatchMetadataService,
@@ -547,6 +552,73 @@ export function sendDeleteShare(id: string): ThunkResponse<void> {
     return await dispatch(
       send(
         "/share/" + id,
+        {
+          method: "DELETE",
+        },
+        {
+          ...defaultOpts,
+        },
+      ),
+    );
+  };
+}
+
+export function sendCreateOrUpdateCollaboration(req: CollaborationCreateService): ThunkResponse<Collaboration> {
+  return async (dispatch, _getState) => {
+    return await dispatch(
+      send(
+        "/collaboration",
+        {
+          data: req,
+          method: "PUT",
+        },
+        {
+          ...defaultOpts,
+        },
+      ),
+    );
+  };
+}
+
+export function getCollaborators(req: ListCollaboratorsService): ThunkResponse<Collaboration[]> {
+  return async (dispatch, _getState) => {
+    return await dispatch(
+      send(
+        "/collaboration",
+        {
+          method: "GET",
+          params: req,
+        },
+        {
+          ...defaultOpts,
+        },
+      ),
+    );
+  };
+}
+
+export function getSharedByMeCollaborations(req: ListSharedByMeService): ThunkResponse<ListCollaborationResponse> {
+  return async (dispatch, _getState) => {
+    return await dispatch(
+      send(
+        "/collaboration/shared-by-me",
+        {
+          method: "GET",
+          params: req,
+        },
+        {
+          ...defaultOpts,
+        },
+      ),
+    );
+  };
+}
+
+export function sendDeleteCollaboration(id: string): ThunkResponse<void> {
+  return async (dispatch, _getState) => {
+    return await dispatch(
+      send(
+        "/collaboration/" + id,
         {
           method: "DELETE",
         },

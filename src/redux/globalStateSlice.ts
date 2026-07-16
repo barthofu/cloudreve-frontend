@@ -156,6 +156,10 @@ export interface GlobalStateSlice {
   manageShareDialogOpen?: boolean;
   manageShareDialogFile?: FileResponse;
 
+  // Manage collaborators (internal folder sharing) dialog
+  manageCollaboratorsDialogOpen?: boolean;
+  manageCollaboratorsDialogFile?: FileResponse;
+
   // Stale version action dialog
   staleVersionDialogOpen?: boolean;
   staleVersionUri?: string;
@@ -405,6 +409,7 @@ export const globalStateSlice = createSlice({
       state.shareLinkDialogOpen = state.shareLinkDialogOpen ? false : undefined;
       state.versionControlDialogOpen = state.versionControlDialogOpen ? false : undefined;
       state.manageShareDialogOpen = state.manageShareDialogOpen ? false : undefined;
+      state.manageCollaboratorsDialogOpen = state.manageCollaboratorsDialogOpen ? false : undefined;
       state.createNewDialogOpen = state.createNewDialogOpen ? false : undefined;
       state.selectOptionDialogOpen = state.selectOptionDialogOpen ? false : undefined;
       state.batchDownloadLogDialogOpen = state.batchDownloadLogDialogOpen ? false : undefined;
@@ -771,6 +776,13 @@ export const globalStateSlice = createSlice({
     closeManageShareDialog: (state) => {
       state.manageShareDialogOpen = false;
     },
+    setManageCollaboratorsDialog: (state, action: PayloadAction<{ open: boolean; file: FileResponse }>) => {
+      state.manageCollaboratorsDialogOpen = action.payload.open;
+      state.manageCollaboratorsDialogFile = action.payload.file;
+    },
+    closeManageCollaboratorsDialog: (state) => {
+      state.manageCollaboratorsDialogOpen = false;
+    },
     setImageViewer: (state, action: PayloadAction<ImageViewerState>) => {
       state.imageViewer = action.payload;
     },
@@ -898,6 +910,8 @@ export const {
   closeImageViewer,
   setManageShareDialog,
   closeManageShareDialog,
+  setManageCollaboratorsDialog,
+  closeManageCollaboratorsDialog,
   setVersionControlDialog,
   closeVersionControlDialog,
   closeSidebar,

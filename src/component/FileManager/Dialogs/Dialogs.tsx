@@ -9,6 +9,7 @@ import ChangeIcon from "./ChangeIcon.tsx";
 import ShareDialog from "./Share/ShareDialog.tsx";
 import VersionControl from "./VersionControl.tsx";
 import ManageShares from "./Share/ManageShares.tsx";
+import ManageCollaborators from "./Collaboration/ManageCollaborators.tsx";
 import StaleVersionConfirm from "./StaleVersionConfirm.tsx";
 import SaveAs from "./SaveAs.tsx";
 import Photopea from "../../Viewers/Photopea/Photopea.tsx";
@@ -59,6 +60,7 @@ const Dialogs = () => {
       <ShareDialog />
       <VersionControl />
       <ManageShares />
+      <ManageCollaborators />
       <StaleVersionConfirm />
       <SaveAs />
       <Photopea />

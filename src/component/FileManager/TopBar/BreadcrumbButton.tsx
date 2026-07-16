@@ -191,6 +191,8 @@ export const useBreadcrumbButtons = ({
           return { Icons: [Delete, DeleteOutlined] };
         case Filesystem.shared_with_me:
           return { Icons: [PeopleTeam, PeopleTeamOutlined] };
+        case Filesystem.collab:
+          return { Icons: [PeopleTeam, PeopleTeamOutlined] };
         case Filesystem.share:
           if (shareInfo) {
             return {

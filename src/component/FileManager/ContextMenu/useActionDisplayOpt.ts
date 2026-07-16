@@ -77,6 +77,7 @@ export interface DisplayOption {
   showVersionControl?: boolean;
   showDirectLinkManagement?: boolean;
   showManageShares?: boolean;
+  showManageCollaborators?: boolean;
   showCreateArchive?: boolean;
   showResetThumb?: boolean;
 
@@ -119,7 +120,9 @@ export const getActionOpt = (
     const parentCap = new Boolset(parent.capability);
     const parentCrUri = new CrUri(parent.path ?? defaultPath);
     const parentUpdatable =
-      parent.owned || (parentCrUri.fs() == Filesystem.share && parentCap.enabled(NavigatorCapability.upload_file));
+      parent.owned ||
+      ((parentCrUri.fs() == Filesystem.share || parentCrUri.fs() == Filesystem.collab) &&
+        parentCap.enabled(NavigatorCapability.upload_file));
     display.showCreateFolder = parentCap.enabled(NavigatorCapability.create_file) && parentUpdatable;
     display.showCreateFile = display.showCreateFolder && fmIndex == FileManagerIndex.main;
     display.showUpload = display.showCreateFile;
@@ -144,7 +147,11 @@ export const getActionOpt = (
   targets.forEach((target) => {
     let readable = true;
     let updatable = target.owned;
-    if (!updatable && parentUrl.fs() == Filesystem.share && target.capability) {
+    if (
+      !updatable &&
+      (parentUrl.fs() == Filesystem.share || parentUrl.fs() == Filesystem.collab) &&
+      target.capability
+    ) {
       const targetBs = new Boolset(target.capability);
       updatable =
         targetBs.enabled(NavigatorCapability.upload_file) ||
@@ -302,6 +309,13 @@ export const getActionOpt = (
     !!currentUser &&
     groupBs.enabled(GroupPermission.share) &&
     display.orCapability.enabled(NavigatorCapability.share);
+  display.showManageCollaborators =
+    targets.length == 1 &&
+    targets[0].type == FileType.folder &&
+    targets[0].owned &&
+    !!currentUser &&
+    display.orCapability &&
+    display.orCapability.enabled(NavigatorCapability.share);
   display.showCreateArchive =
     display.hasReadable &&
     !!currentUser &&
@@ -319,6 +333,7 @@ export const getActionOpt = (
   display.showMore =
     display.showVersionControl ||
     display.showManageShares ||
+    display.showManageCollaborators ||
     display.showCreateArchive ||
     display.showDirectLinkManagement ||
     display.showResetThumb;
