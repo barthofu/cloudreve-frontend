@@ -24,6 +24,7 @@ import { Code } from "../../../Common/Code.tsx";
 import { FilledTextField, SmallFormControlLabel } from "../../../Common/StyledComponents.tsx";
 import BookInformation from "../../../Icons/BookInformation.tsx";
 import ClockArrowDownload from "../../../Icons/ClockArrowDownload.tsx";
+import Edit from "../../../Icons/Edit.tsx";
 import Eye from "../../../Icons/Eye.tsx";
 import TableSettingsOutlined from "../../../Icons/TableSettings.tsx";
 import Timer from "../../../Icons/Timer.tsx";
@@ -79,6 +80,7 @@ export interface ShareSetting {
   password?: string;
   share_view?: boolean;
   show_readme?: boolean;
+  writable?: boolean;
   downloads?: boolean;
   expires?: boolean;
 
@@ -132,13 +134,14 @@ const ShareSettingContent = ({ setting, file, editing, onSettingChange }: ShareS
     setExpanded(isExpanded ? panel : undefined);
   };
 
-  const handleCheck = (prop: "is_private" | "share_view" | "show_readme" | "expires" | "downloads") => () => {
-    if (!setting[prop]) {
-      handleExpand(prop)(null, true);
-    }
+  const handleCheck =
+    (prop: "is_private" | "share_view" | "show_readme" | "writable" | "expires" | "downloads") => () => {
+      if (!setting[prop]) {
+        handleExpand(prop)(null, true);
+      }
 
-    onSettingChange({ ...setting, [prop]: !setting[prop] });
-  };
+      onSettingChange({ ...setting, [prop]: !setting[prop] });
+    };
 
   return (
     <List
@@ -231,6 +234,20 @@ const ShareSettingContent = ({ setting, file, editing, onSettingChange }: ShareS
             <AccordionDetails>
               <Trans i18nKey="application:modals.showReadmeDes" components={[<Code />]} />
             </AccordionDetails>
+          </Accordion>
+          <Accordion expanded={expanded === "writable"} onChange={handleExpand("writable")}>
+            <AccordionSummary aria-controls="panel1a-content" id="panel1a-header">
+              <StyledListItemButton>
+                <ListItemIcon>
+                  <Edit />
+                </ListItemIcon>
+                <ListItemText primary={t("application:modals.shareWritable")} />
+                <ListItemSecondaryAction>
+                  <Checkbox checked={setting.writable} onChange={handleCheck("writable")} />
+                </ListItemSecondaryAction>
+              </StyledListItemButton>
+            </AccordionSummary>
+            <AccordionDetails>{t("application:modals.shareWritableDes")}</AccordionDetails>
           </Accordion>
         </>
       )}

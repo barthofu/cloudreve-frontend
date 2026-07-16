@@ -117,7 +117,10 @@ export const getActionOpt = (
     }
 
     const parentCap = new Boolset(parent.capability);
-    display.showCreateFolder = parentCap.enabled(NavigatorCapability.create_file) && parent.owned;
+    const parentCrUri = new CrUri(parent.path ?? defaultPath);
+    const parentUpdatable =
+      parent.owned || (parentCrUri.fs() == Filesystem.share && parentCap.enabled(NavigatorCapability.upload_file));
+    display.showCreateFolder = parentCap.enabled(NavigatorCapability.create_file) && parentUpdatable;
     display.showCreateFile = display.showCreateFolder && fmIndex == FileManagerIndex.main;
     display.showUpload = display.showCreateFile;
     if (display.showCreateFile) {
@@ -140,7 +143,15 @@ export const getActionOpt = (
   const parentUrl = new CrUri(targets?.[0]?.path ?? defaultPath);
   targets.forEach((target) => {
     let readable = true;
-    let updatable = target.owned && parentUrl.fs() != Filesystem.share;
+    let updatable = target.owned;
+    if (!updatable && parentUrl.fs() == Filesystem.share && target.capability) {
+      const targetBs = new Boolset(target.capability);
+      updatable =
+        targetBs.enabled(NavigatorCapability.upload_file) ||
+        targetBs.enabled(NavigatorCapability.rename_file) ||
+        targetBs.enabled(NavigatorCapability.delete_file) ||
+        targetBs.enabled(NavigatorCapability.create_file);
+    }
 
     if (display.allReadable && !readable) {
       display.allReadable = false;
