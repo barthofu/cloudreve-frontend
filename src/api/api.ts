@@ -194,6 +194,24 @@ export function sendLogin(req: PasswordLoginRequest): ThunkResponse<LoginRespons
   };
 }
 
+export function sendOIDCFinish(ticket: string): ThunkResponse<LoginResponse> {
+  return async (dispatch, _getState) => {
+    return await dispatch(
+      send(
+        "/session/oidc/finish",
+        {
+          data: { ticket },
+          method: "POST",
+        },
+        {
+          ...defaultOpts,
+          noCredential: true,
+        },
+      ),
+    );
+  };
+}
+
 export function send2FALogin(req: TwoFALoginRequest): ThunkResponse<LoginResponse> {
   return async (dispatch, _getState) => {
     return await dispatch(

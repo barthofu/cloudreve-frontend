@@ -179,7 +179,130 @@ const UserSession = () => {
         </SettingSection>
         <SettingSection>
           <Typography variant="h6" gutterBottom sx={{ display: "flex", alignItems: "center" }}>
-            {t("settings.thirdPartySignIn")} <ProChip label="Pro" color="primary" size="small" />
+            {t("settings.oidc")}
+          </Typography>
+          <SettingSectionContent>
+            <SettingForm lgWidth={5}>
+              <FormControl fullWidth>
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={isTrueVal(values.oidc_enabled)}
+                      onChange={(e) =>
+                        setSettings({
+                          oidc_enabled: e.target.checked ? "1" : "0",
+                        })
+                      }
+                    />
+                  }
+                  label={t("settings.oidc")}
+                />
+                <NoMarginHelperText>
+                  <Trans
+                    i18nKey="settings.oidcDes"
+                    ns={"dashboard"}
+                    values={{ url: `${window.location.origin}/api/v4/session/oidc/callback` }}
+                    components={[<Code />, <Link href={"https://cloudreve.org/docs"} target={"_blank"} />]}
+                  />
+                </NoMarginHelperText>
+              </FormControl>
+            </SettingForm>
+            {isTrueVal(values.oidc_enabled) && (
+              <>
+                <SettingForm title={t("settings.displayName")} lgWidth={5}>
+                  <FormControl fullWidth>
+                    <DenseFilledTextField
+                      placeholder={"Authelia"}
+                      value={values.oidc_display_name}
+                      onChange={(e) =>
+                        setSettings({
+                          oidc_display_name: e.target.value,
+                        })
+                      }
+                    />
+                    <NoMarginHelperText>{t("settings.displayNameDes")}</NoMarginHelperText>
+                  </FormControl>
+                </SettingForm>
+                <SettingForm title={t("settings.oidcWellknownUrl")} lgWidth={5}>
+                  <FormControl fullWidth>
+                    <DenseFilledTextField
+                      placeholder={"https://auth.example.com"}
+                      value={values.oidc_issuer}
+                      onChange={(e) =>
+                        setSettings({
+                          oidc_issuer: e.target.value,
+                        })
+                      }
+                    />
+                    <NoMarginHelperText>{t("settings.oidcWellknownUrlDes")}</NoMarginHelperText>
+                  </FormControl>
+                </SettingForm>
+                <SettingForm title={t("settings.clientID")} lgWidth={5}>
+                  <FormControl fullWidth>
+                    <DenseFilledTextField
+                      value={values.oidc_client_id}
+                      onChange={(e) =>
+                        setSettings({
+                          oidc_client_id: e.target.value,
+                        })
+                      }
+                    />
+                    <NoMarginHelperText>{t("settings.clientIDDes")}</NoMarginHelperText>
+                  </FormControl>
+                </SettingForm>
+                <SettingForm title={t("settings.clientSecret")} lgWidth={5}>
+                  <FormControl fullWidth>
+                    <DenseFilledTextField
+                      type={"password"}
+                      value={values.oidc_client_secret}
+                      onChange={(e) =>
+                        setSettings({
+                          oidc_client_secret: e.target.value,
+                        })
+                      }
+                    />
+                    <NoMarginHelperText>{t("settings.clientSecretDes")}</NoMarginHelperText>
+                  </FormControl>
+                </SettingForm>
+                <SettingForm title={t("settings.scope")} lgWidth={5}>
+                  <FormControl fullWidth>
+                    <DenseFilledTextField
+                      placeholder={"openid,profile,email"}
+                      value={values.oidc_scopes}
+                      onChange={(e) =>
+                        setSettings({
+                          oidc_scopes: e.target.value,
+                        })
+                      }
+                    />
+                    <NoMarginHelperText>{t("settings.scopeDes")}</NoMarginHelperText>
+                  </FormControl>
+                </SettingForm>
+                <SettingForm lgWidth={5}>
+                  <FormControl fullWidth>
+                    <FormControlLabel
+                      control={
+                        <Switch
+                          checked={isTrueVal(values.oidc_auto_create_user)}
+                          onChange={(e) =>
+                            setSettings({
+                              oidc_auto_create_user: e.target.checked ? "1" : "0",
+                            })
+                          }
+                        />
+                      }
+                      label={t("settings.oidcAutoCreateUser")}
+                    />
+                    <NoMarginHelperText>{t("settings.oidcAutoCreateUserDes")}</NoMarginHelperText>
+                  </FormControl>
+                </SettingForm>
+              </>
+            )}
+          </SettingSectionContent>
+        </SettingSection>
+        <SettingSection>
+          <Typography variant="h6" gutterBottom sx={{ display: "flex", alignItems: "center" }}>
+            {t("settings.otherThirdPartySignIn")} <ProChip label="Pro" color="primary" size="small" />
           </Typography>
           <SettingSectionContent>
             <SettingForm lgWidth={5}>
